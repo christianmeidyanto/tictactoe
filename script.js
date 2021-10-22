@@ -1,5 +1,6 @@
 let values = ['-', '-', '-', '-', '-', '-', '-', '-', '-'];
-let haveIt1 = [];
+let haveIt1 = [],
+  haveIt = [];
 
 let creditH = 3;
 let creditC = 3;
@@ -29,6 +30,7 @@ function addO(index, box) {
     creditC -= 1;
     document.getElementById(box).innerHTML = 'O';
     // console.log(values, creditC);
+    setTimeout(result(), 5000);
   } else {
     alert('No Credit !!');
   }
@@ -38,7 +40,9 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-document.getElementById('btnClear').addEventListener('click', () => {
+document.getElementById('btnClear').addEventListener('click', () => clear());
+
+function clear() {
   let i = 0;
   let str1 = 'b';
   while (i < 8) {
@@ -58,9 +62,7 @@ document.getElementById('btnClear').addEventListener('click', () => {
   document.getElementById('b7').innerHTML = '';
   document.getElementById('b8').innerHTML = '';
   document.getElementById('b9').innerHTML = '';
-});
-
-let haveIt = [];
+}
 
 function generateUniqueRandom(maxNr) {
   //Generate random number
@@ -84,4 +86,55 @@ function generateUniqueRandom(maxNr) {
       return false;
     }
   }
+}
+
+function result() {
+  let tmp, tmp1;
+  if (creditH === 0 && creditC === 0) {
+    // console.log(haveIt1.sort(), haveIt.sort());
+    if (haveIt1.includes(0) && haveIt1.includes(1) && haveIt1.includes(2))
+      tmp = true;
+    else if (haveIt1.includes(3) && haveIt1.includes(4) && haveIt1.includes(5))
+      tmp = true;
+    else if (haveIt1.includes(6) && haveIt1.includes(7) && haveIt1.includes(8))
+      tmp = true;
+    else if (haveIt1.includes(0) && haveIt1.includes(3) && haveIt1.includes(6))
+      tmp = true;
+    else if (haveIt1.includes(1) && haveIt1.includes(4) && haveIt1.includes(7))
+      tmp = true;
+    else if (haveIt1.includes(2) && haveIt1.includes(5) && haveIt1.includes(8))
+      tmp = true;
+    else if (haveIt1.includes(0) && haveIt1.includes(4) && haveIt1.includes(8))
+      tmp = true;
+    else if (haveIt1.includes(2) && haveIt1.includes(4) && haveIt1.includes(6))
+      tmp = true;
+    else tmp = false;
+
+    if (haveIt.includes(0) && haveIt.includes(1) && haveIt.includes(2))
+      tmp1 = true;
+    else if (haveIt.includes(3) && haveIt.includes(4) && haveIt.includes(5))
+      tmp1 = true;
+    else if (haveIt.includes(6) && haveIt.includes(7) && haveIt.includes(8))
+      tmp1 = true;
+    else if (haveIt.includes(0) && haveIt.includes(3) && haveIt.includes(6))
+      tmp1 = true;
+    else if (haveIt.includes(1) && haveIt.includes(4) && haveIt.includes(7))
+      tmp1 = true;
+    else if (haveIt.includes(2) && haveIt.includes(5) && haveIt.includes(8))
+      tmp1 = true;
+    else if (haveIt.includes(0) && haveIt.includes(4) && haveIt.includes(8))
+      tmp1 = true;
+    else if (haveIt.includes(2) && haveIt.includes(4) && haveIt.includes(6))
+      tmp1 = true;
+    else tmp1 = false;
+
+    if (tmp === tmp1) {
+      alert('TIE');
+    } else if (tmp === true && tmp1 === false) {
+      alert('You Win');
+    } else {
+      alert('You Lose');
+    }
+  }
+  console.log(result);
 }
